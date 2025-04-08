@@ -1,29 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import Lists from './components/Lists';
 import Form from './components/Form';
 
+
 export default function App() {
 
-  const [todoData, setTodoData] = useState([
-    {
-      id: 1,
-      title: "공부하기",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "운동하기",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "게임하기",
-      completed: false,
-    },
-  ]);
+  const initialTodoData = localStorage.getItem('todoData') 
+      ? JSON.parse(localStorage.getItem('todoData')) 
+      : [];
 
+  const [todoData, setTodoData] = useState(initialTodoData);
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem('todoData', JSON.stringify(todoData));}, [todoData]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
