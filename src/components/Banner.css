@@ -15,6 +15,7 @@
       height: 40rem;
     }
   }
+
   @media (max-width: 768px) {
     .banner__contents {
       width: min-content !important;
@@ -37,11 +38,14 @@
       border-radius: 4px !important;
     }
   }
+
   .banner__contents {
     margin-left: 40px;
     padding-top: 140px;
     height: 190px;
+    text-align: left;
   }
+
   .banner__title {
     font-size: 3rem;
     font-weight: 800;
