@@ -3,6 +3,13 @@ import axios from '../api/axios'
 import './Row.css'
 import MovieModal from './MovieModal'
 
+import { Navigation,Pagination, Scrollbar, A11y } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 const Row =({title, fetchUrl, isLargeRow, id}) => {
     const [movies, setMovies] = useState([]);
 
@@ -31,7 +38,47 @@ const Row =({title, fetchUrl, isLargeRow, id}) => {
     return (
         <section className="row">
             <h2>{title}</h2>
-            <div className="slider">
+            <Swiper
+                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                loop={true} //loop 기능을 사용할 것인지
+                navigation //arrow 버튼 사용 유무
+                pagination={{ clickable: true }} //page 버튼 보이게 할지
+                breakpoints={{
+                    1378: {
+                        slidesPerView: 6,
+                        slidesPerGroup: 6,
+                    },
+                    998: {
+                        slidesPerView: 5,
+                        slidesPerGroup: 5,
+                    },
+                    625:{
+                        slidesPerView: 4,
+                        slidesPerGroup: 4,
+                    },
+                    0: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                    }
+                }}
+            >
+                {movies.map((movie) => (
+                    <SwiperSlide key={movie.id}>
+                        <img 
+                            onClick={() => handleClick(movie)}
+                            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+                            src={`${BASE_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                            loading="lazy"
+                            alt={movie.title || movie.name || movie.original_name}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+                
+
+
+
+            {/* <div className="slider">
                 <div 
                     className="slider__arrow-left"
                     onClick={() => {
@@ -67,7 +114,8 @@ const Row =({title, fetchUrl, isLargeRow, id}) => {
                     </span>
                 </div>
 
-            </div>
+            </div> */}
+
 
             {
                 modalOpen && (
