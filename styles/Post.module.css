@@ -1,0 +1,36 @@
+.container {
+    max-width: 36rem;
+    padding: 0 1rem;
+    margin: 3rem auto 6rem;
+  }
+  
+  .headingXl {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem; /* 제목 아래 여백 */
+  }
+  
+  .lightText {
+    color: #666;
+    font-size: 0.875rem;
+    margin-bottom: 2rem; /* 날짜 아래 여백 */
+  }
+  
+  .postContent {
+    line-height: 1.6;
+  }
+  
+  .postContent ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .postContent li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .postContent p {
+    margin: 1rem 0;
+  }
+  
+  
