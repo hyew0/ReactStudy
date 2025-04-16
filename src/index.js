@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
+import{ loggerMiddleware } from './middleware';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const store = createStore(rootReducer);
+const middleware = applyMiddleware(loggerMiddleware);
+
+const store = createStore(rootReducer, middleware);
 
 console.log(store.getState());
 
