@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 /* 
 store action reducer dispatch
@@ -19,8 +20,21 @@ useDispatch: useDispatch Hooks를 이용해서 스토어의 값을 변경할 수
 function App() {
 
   const counter = useSelector((state) => state.counter);
-  const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    async function fetchPosts(){
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      console.log(response.data);
+      dispatch({type: 'FETCH_POST', payload: response.data})
+    }
+    fetchPosts();
+  }, [dispatch])
+
+  
+  
 
   const [todoValue, setTodoValue] = useState('')
 
@@ -54,6 +68,12 @@ function App() {
 
       <div>
         
+      <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>{todo}</li>
+          ))}
+        </ul>
+
         <form onSubmit={handleSubmit}>
           <input  
             type='text' 
@@ -63,10 +83,12 @@ function App() {
           <input type='submit'/>
         </form>
 
+        
+      </div>
+
+      <div>
         <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>{todo}</li>
-          ))}
+          {posts.map((post) => <li key={post.id}>{post.title}</li>)}
         </ul>
       </div>
       

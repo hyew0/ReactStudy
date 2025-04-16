@@ -1,21 +1,27 @@
 # redux 연습 프로젝트
 + store action reducer dispatch
 + store: 리덕스에서 관리하는 상태를 저장하는 객체이다.
-+ action: store의 상태를 변경하기 위한 객체이다.
-+        action은 type과 payload로 구성되어 있다.
++ action: store의 상태를 변경하기 위한 객체이다. action은 type과 payload로 구성되어 있다.
 + reducer: action을 받아서 새로운 state를 만들어주는 함수이다.
-+ dispatch: action을 store에 전달하는 함수이다.
-+          dispatch는 action을 store에 전달하고, store는 reducer를 호출하여 새로운 state를 만든다.
++ dispatch: action을 store에 전달하는 함수이다. dispatch는 action을 store에 전달하고, store는 reducer를 호출하여 새로운 state를 만든다.
 
 ### redux Hooks
 + useSelector: useSelector Hooks를 이용해서 스토어의 값을 가져올 수 있다.
-+ useDispatch: useDispatch Hooks를 이용해서 스토어의 값을 변경할 수 있다.
-+              store에 있는 dispatch 함수에 접근하는 hook이다.
++ useDispatch: useDispatch Hooks를 이용해서 스토어의 값을 변경할 수 있다. store에 있는 dispatch 함수에 접근하는 hook이다.
 
 
 ###   리덕스 미들웨어
 + Redux 미들웨어는 액션을 전달하고 리듀서에 도달하는 순간 사이에 사전에 지정된 작업을 실행할 수 있게 해주는 중간자이다.
 + 로깅, 충돌 보고, 비동기 API와 통신, 라우팅 등을 위해 Redux 미들웨어 사용한다.
+
+### 리덕스 thunk
++ 리덕스를 사용하는 앱에서 비동기 작업을 할 때 많이 사용하는 방법이 redux-thunk이다.
++ logger 미들웨어처럼 리덕스 미들웨어이며, 리덕스를 개발한 Dan Abramov가 만들었다.
+
+#### thunk 용어는?
++ "thunk"라는 단어는 "일부 지연된 작업을 수행하는 코드 조각"을 의미하는 프로그래밍 용어이다. 
++ 지금 당장 일부 논리(logic)을 실행하는 대신 나중에 작업을 수행하는데 사용할 수 있는 함수 본문이나 코드조각이다.
+
 
 
 ---
