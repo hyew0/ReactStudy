@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import {fetchPosts} from './actions/post';
 
 /* 
 store action reducer dispatch
@@ -23,14 +23,12 @@ function App() {
   const todos = useSelector((state) => state.todos);
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+
+  console.log('Posts:', posts);
   
   useEffect(() => {
-    async function fetchPosts(){
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      console.log(response.data);
-      dispatch({type: 'FETCH_POST', payload: response.data})
-    }
-    fetchPosts();
+    
+    dispatch(fetchPosts());
   }, [dispatch])
 
   
@@ -88,7 +86,7 @@ function App() {
 
       <div>
         <ul>
-          {posts.map((post) => <li key={post.id}>{post.title}</li>)}
+          {posts.map((post,i) => <li key={i}>{post.title}</li>)}
         </ul>
       </div>
       
